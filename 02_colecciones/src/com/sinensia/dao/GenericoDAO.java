@@ -6,7 +6,7 @@
 
 package com.sinensia.dao;
 
-import com.sinensia.T;
+import com.sinensia.Entidad;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -15,30 +15,27 @@ import java.util.Map;
 /**
  *
  * @author Admin - Paco
+ * @Param<T> El tipo hereda de Entidad
  */
-public class GenericoDAO<T> implements InterfazDAO<> {
-HashMap<Long, T> mapa;
-
-public class Entidad{
-private long id;
-
-}
 
 
-public GenericoDAO(){
+public class GenericoDAO<T extends Entidad> implements InterfazDAO<T> {
 
-HashMap<Long, T> mapa;
-    T List;
-    
+    HashMap<Long, T> mapa;
+
+public  GenericoDAO() {
+
+    mapa=new HashMap<>();
+
 }
 
 
     @Override
     public void poner(T cli){
-if(cli==null){
-System.err.println("No se pueden añadir nulos");
-return;
-}
+    if(cli==null){
+    System.err.println("No se pueden añadir nulos");
+    return;
+    }
     mapa.put(cli.getId(), cli);
 
 }
@@ -75,7 +72,7 @@ return;
     
     lista.add(ent.getValue());
     }
-    return lista;
+    return lista; //Cast implícito
     
     }
 
@@ -83,12 +80,13 @@ return;
 public void modificar(T nuevoValor){
 
     mapa.replace(nuevoValor.getId(), nuevoValor);
-  
+
+/*    
 T cli= mapa.get(nuevoValor.getId());
 cli.setActivo(nuevoValor.isActivo());
 cli.setNombre(nuevoValor.getNombre());
 cli.setEmail(nuevoValor.getEmail());
-
+*/
 
 }
 } 

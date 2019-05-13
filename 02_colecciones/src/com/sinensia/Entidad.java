@@ -3,18 +3,25 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-package com.sinensia.dao;
+package com.sinensia;
 
 /**
  *
- * @author Admin - Paco
+ * @author paco
  */
 public class Entidad {
+ 
+     protected long id;
 
     public Entidad(long id) {
-this.id=id;
-}
+        this.id = id;
+    }
 
+    public long getId() {
+        return id;
+    }
 
+    public void setId(long id) {
+        this.id = id;
+    }   
 }

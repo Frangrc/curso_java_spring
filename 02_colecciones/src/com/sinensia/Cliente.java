@@ -1,7 +1,8 @@
 package com.sinensia;
+import com.sinensia.dao.GenericoDAO;
 
-public class Cliente {
-    protected long id;    
+public class Cliente extends Entidad {
+        
     protected String nombre;
     private String email;
     private boolean activo;
@@ -11,7 +12,7 @@ public class Cliente {
     }*/
     public Cliente(long id, String nombre, String email) /* throws Exception*/ {
         
-        this.id = id;
+        super(id); //Heredamos id de la clase padre
         if (nombre == null || nombre == "") {
             // throw new Exception("Nombre de cliente inválido");
             System.err.println("Nombre de cliente inválido");
@@ -57,8 +58,8 @@ public class Cliente {
 
     @Override
     public String toString() {
-        //return super.toString(); //To change body of generated methods, choose Tools | Templates.
-    return "Cliente [" + id + ", " + nombre + ", " + email + "]";
+        
+       return "Cliente [" + id + ", " + nombre + ", " + email + "]";
     
     }
 

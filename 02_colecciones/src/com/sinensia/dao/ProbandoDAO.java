@@ -21,8 +21,8 @@ public static void probarCliente() {
     repoCli.poner(new Cliente(1, "Ana", "aaa@ijim"));
     repoCli.poner(new ClienteInvitado(2, "Juan", "ddk@rr"));
     repoCli.poner(new ClienteInvitado(3, "Bea", "ddk@oo"));
-    System.out.println("Juan: " + repoCli.leerUno(2).toString());
-    System.out.println("Juan: " + repoCli.leerUno(2).toString());
+    //System.out.println("Juan: " + repoCli.leerUno(2).toString());
+    //System.out.println("Repo: " + repoCli.leerUno(2).toString());
 
 repoCli.modificar(new ClienteInvitado(2, "Juan Bonilla", "@irjir"));
 Cliente cli=repoCli.leerUno(2);
@@ -30,14 +30,11 @@ Cliente cli=repoCli.leerUno(2);
 repoCli.eliminar(1);
 List<Cliente> lista = repoCli.leerTodos();
 
-for(Cliente cli: lista){
+    for(Cliente cliente: lista){
 
-    System.out.println("Cliente " + cliente.toString());
+        System.out.println("Cliente " + cliente.toString());
+        }
 
-}
-//Cliente clientes=(Cliente) repoCli.leerTodos();
-//System.out.println("Lista de clientes: " + clientes.toString());
-}
-
+    }
 
 }

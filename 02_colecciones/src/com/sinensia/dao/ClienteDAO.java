@@ -29,18 +29,20 @@ mapa= new HashMap<>();
 
     @Override
     public void poner(Cliente cli){
-if(cli==null){
-System.err.println("No se pueden añadir nulos");
-return;
-}
+    if(cli==null){
+    System.err.println("No se pueden añadir nulos");
+    return;
+    }
+    //Metemos el dato cliente en el HashMap
     mapa.put(cli.getId(), cli);
 
 }
 
     @Override
     public Cliente leerUno(long id){
+    //Si el mapa contiene clave 
     if(mapa.containsKey(id)){
-
+    //Obtenemos el dato del HashMap mediante el identificador
     return mapa.get(id);
 
     }
@@ -61,15 +63,17 @@ return;
 
     @Override
     public List<Cliente> leerTodos() {
-        
+      
+   //Creamos lista con tipo Cliente como argumento     
    ArrayList<Cliente> lista;
    lista = new ArrayList<Cliente>();
    
     for (Map.Entry<Long,Cliente> ent  : mapa.entrySet()) {
     
+    //Obtenemos el valor de la lista
     lista.add(ent.getValue());
     }
-    return lista;
+    return lista; //Devolvemos la lista
     
     }
 
@@ -82,23 +86,7 @@ cli.setNombre(nuevoValor.getNombre());
 cli.setEmail(nuevoValor.getEmail());
 
 }
-//for(int indice = 0;indice<mapa.size();indice++)
-//{Cliente clientes = mapa.get(indice);
-////Cliente clientesN = mapa.get.containsKey(id);
-////Cliente clientesEm = mapa.get(Email);
-//    System.out.println("Cliente " + indice + ": "
-//                + clientes.);
-//                //+ ", " + clientes.getEmail());
-//
-////        for (Map.Entry<Long,Cliente> parClaveValor  : listClientes.entrySet()) 
-////        {
-////            System.out.println("Cliente " + parClaveValor.getKey());
-////            Cliente cliente = parClaveValor.getValue();
-////            System.out.println("  Nombre: " + cliente.getNombre());
-////            
-////        }    
-// 
-//}return null;
+
     
     
     
