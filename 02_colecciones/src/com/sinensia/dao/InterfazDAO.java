@@ -23,5 +23,5 @@ public interface InterfazDAO<T> {
     List<T> leerTodos();
     void eliminar(T valor);
     void eliminar(long id);
-    public void modificar(T valor);
+    void modificar(T nuevoValor);
 }

@@ -8,6 +8,7 @@ package com.sinensia.dao;
 
 import com.sinensia.Cliente;
 import com.sinensia.ClienteInvitado;
+import java.util.List;
 
 /**
  *
@@ -22,6 +23,21 @@ public static void probarCliente() {
     repoCli.poner(new ClienteInvitado(3, "Bea", "ddk@oo"));
     System.out.println("Juan: " + repoCli.leerUno(2).toString());
     System.out.println("Juan: " + repoCli.leerUno(2).toString());
+
+repoCli.modificar(new ClienteInvitado(2, "Juan Bonilla", "@irjir"));
+Cliente cli=repoCli.leerUno(2);
+//System.out.println("Cliente modificadp: " + cli.toString());
+repoCli.eliminar(1);
+List<Cliente> lista = repoCli.leerTodos();
+
+for(Cliente cli: lista){
+
+    System.out.println("Cliente " + cliente.toString());
+
 }
+//Cliente clientes=(Cliente) repoCli.leerTodos();
+//System.out.println("Lista de clientes: " + clientes.toString());
+}
+
 
 }

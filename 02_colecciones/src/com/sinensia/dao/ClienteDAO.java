@@ -7,9 +7,11 @@
 package com.sinensia.dao;
 
 import com.sinensia.Cliente;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Consumer;
 
 /**
  *
@@ -18,6 +20,7 @@ import java.util.Map;
 public class ClienteDAO implements InterfazDAO<Cliente> {
     
     HashMap<Long, Cliente> mapa;
+    Cliente List;
     
 public ClienteDAO() {
 mapa= new HashMap<>();
@@ -59,40 +62,46 @@ return;
     @Override
     public List<Cliente> leerTodos() {
         
-        List<Cliente> listClientes;
-        listClientes = new List<Cliente>();
-
-for(Cliente cli : listClientes)
-{
-    //imprimimos el objeto pivote
-    System.out.println(cli);
-}
-
-for(int indice = 0;indice<listClientes.size();indice++)
-{
-    System.out.println(listClientes.get(indice));
-}
-
-listClientes.forEach(System.out::println);
-
-//        for (List.Entry<Cliente> parClaveValor  : listClientes.entrySet()) 
-//        {
-//            System.out.println("Cliente " + parClaveValor.getKey());
-//            Cliente cliente = parClaveValor.getValue();
-//            System.out.println("  Nombre: " + cliente.getNombre());
-//            
-//        }    
+   ArrayList<Cliente> lista;
+   lista = new ArrayList<Cliente>();
+   
+    for (Map.Entry<Long,Cliente> ent  : mapa.entrySet()) {
+    
+    lista.add(ent.getValue());
+    }
+    return lista;
     
     }
 
-    @Override
-    public void modificar(Cliente cli) {
-      if(cli==null){
-System.err.println("No se pueden modificar nulos");
-return;
-}
-    //mapa.put(cli.setNombre(), cli);  
-    }
+@Override
+public void modificar(Cliente nuevoValor){
 
+Cliente cli= mapa.get(nuevoValor.getId());
+cli.setActivo(nuevoValor.isActivo());
+cli.setNombre(nuevoValor.getNombre());
+cli.setEmail(nuevoValor.getEmail());
 
 }
+//for(int indice = 0;indice<mapa.size();indice++)
+//{Cliente clientes = mapa.get(indice);
+////Cliente clientesN = mapa.get.containsKey(id);
+////Cliente clientesEm = mapa.get(Email);
+//    System.out.println("Cliente " + indice + ": "
+//                + clientes.);
+//                //+ ", " + clientes.getEmail());
+//
+////        for (Map.Entry<Long,Cliente> parClaveValor  : listClientes.entrySet()) 
+////        {
+////            System.out.println("Cliente " + parClaveValor.getKey());
+////            Cliente cliente = parClaveValor.getValue();
+////            System.out.println("  Nombre: " + cliente.getNombre());
+////            
+////        }    
+// 
+//}return null;
+    
+    
+    
+
+}
+

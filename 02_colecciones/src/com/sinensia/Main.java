@@ -1,5 +1,6 @@
 package com.sinensia;
 
+import com.sinensia.dao.ClienteDAO;
 import com.sinensia.dao.ProbandoDAO;
 import com.sinensia.genericos.ProbandoGenericos;
 import com.sinensia.poo_avanzando.ProbandoAnimales;
@@ -23,5 +24,6 @@ public class Main {
        // ProbandoAnimales.probarClasesAbstractas();
     //ProbandoGenericos.probarMetodo();
     ProbandoDAO.probarCliente();
+    
     }
 }
