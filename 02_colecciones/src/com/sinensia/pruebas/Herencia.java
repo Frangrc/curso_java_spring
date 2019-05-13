@@ -12,12 +12,14 @@ import com.sinensia.ClienteInvitado;
  * @author Admin
  */
 public class Herencia {
-    public static void probandoHerencia(){
-     ClienteInvitado invitado = new ClienteInvitado(0, "Juan", null, false);
-     invitado.setDuracionMax(10);
-     System.out.println("Cliente: " + invitado.getNombre() + " duracion: " + invitado.getDuracionMax());
-     
-    // ClienteVip vip= new ClienteVip (0, "Paco", null, false)
-     
-     }
+    
+    public static void probandoHerencia() {
+        ClienteInvitado invitado = new ClienteInvitado(0, "Juan", null);
+        invitado.setDuracionMax(10);
+        System.out.println("Cliente: " + invitado.getNombre()
+            + " duracion: " + invitado.getDuracionMax());
+    }
+    public static void probandoPolimorfismo() {
+        
+    }
 }

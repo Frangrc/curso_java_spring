@@ -1,2 +1,2 @@
 # curso_java_spring
-Codigos fuentes del curso para Viewnext sobre Java, HTML, Git, Spring,Angular, Netbeans, Microservicios, dockers
+Códigos fuentes del curso para ViewNext sobre Java, HTML5, CSS3, Git, Spring, Angular, Netbeans y otras tecnologías., Microservicios, dockers, MVC

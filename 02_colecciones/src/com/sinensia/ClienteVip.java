@@ -9,32 +9,30 @@ package com.sinensia;
  *
  * @author Admin
  */
+public class ClienteVip extends Cliente {
 
+    private String beneficios;
 
-public class ClienteVip extends Cliente_1 {
-   
-    private String benefico;
+    public ClienteVip(long id, String nombre, String email) {
+        super(id, nombre, email);
+        beneficios = "";
+    }    
+    public ClienteVip(long id, String nombre, String email, String beneficios) {
+        super(id, nombre, email);
+        this.beneficios = beneficios;
+    }    
 
-    public ClienteVip(long id, String nombre, String email, boolean actividad) {
-        super(id, nombre, email, actividad);
+    public String getBeneficios() {
+        return beneficios;
+    }
+    public void setBeneficios(String beneficios) {
+        this.beneficios = beneficios;
     }
 
-    /**
-     * Get the value of benefico
-     *
-     * @return the value of benefico
-     */
-    public String getBenefico() {
-        return benefico;
+    @Override
+    public void mostrar() {
+        super.mostrar(); //To change body of generated methods, choose Tools | Templates.
+        System.out.println("ES VIP: " + beneficios);
     }
-
-    /**
-     * Set the value of benefico
-     *
-     * @param benefico new value of benefico
-     */
-    public void setBenefico(String benefico) {
-        this.benefico = benefico;
-    }
- 
+    
 }
