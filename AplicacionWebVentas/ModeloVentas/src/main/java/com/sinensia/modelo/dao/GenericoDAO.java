@@ -29,7 +29,7 @@ public  GenericoDAO() {
     mapa=new HashMap<>();
 
 }
-
+static int contadorIds;
 
     @Override
     public void poner(T cli){
