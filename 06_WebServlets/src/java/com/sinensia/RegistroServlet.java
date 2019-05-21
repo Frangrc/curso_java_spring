@@ -38,6 +38,7 @@ public class RegistroServlet extends HttpServlet {
                 salida.println("<li>Num " + i + "</li>");
             }
             salida.println("</ul>");
+            
             String nombre = peticion.getParameter("nombre");
             String strEdad = peticion.getParameter("edad");
             int edad = Integer.parseInt(strEdad);
