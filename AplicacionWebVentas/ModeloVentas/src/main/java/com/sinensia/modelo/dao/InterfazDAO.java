@@ -19,10 +19,10 @@ import java.util.List;
 //Creamos interfaz genérica(T)
 public interface InterfazDAO<T> {
     
-    public void poner(T valor);
-    T leerUno(Integer id);
-    List<T> leerTodos();
+    T insertar(T valor);
+    T obtenerUno(Integer id);
+    List<T> obtenerTodos();
     void eliminar(T valor);
     void eliminar(Integer id);
-    void modificar(T nuevoValor);
+    T modificar(T nuevoValor);
 }

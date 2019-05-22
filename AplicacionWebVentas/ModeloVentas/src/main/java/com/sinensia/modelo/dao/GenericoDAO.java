@@ -32,21 +32,22 @@ public  GenericoDAO() {
 static int contadorIds;
 
     @Override
-    public void poner(T cli){
+    public T insertar(T cli){
+        contadorIds ++;
     if(cli==null){
     System.err.println("No se pueden añadir nulos");
-    return;
+    }else{
+        mapa.put(contadorIds, cli);
+        cli.setId(contadorIds);
+        return cli;
     }
-    mapa.put(cli.getId(), cli);
-
+   return null; 
 }
 
     @Override
-    public T leerUno(Integer id){
+    public T obtenerUno(Integer id){
     if(mapa.containsKey(id)){
-
     return mapa.get(id);
-
     }
     System.err.println("Clave/ID no encontrado " + id);
     return null;
@@ -64,7 +65,7 @@ static int contadorIds;
     }
 
     @Override
-    public List<T> leerTodos() {
+    public List<T> obtenerTodos() {
         
    ArrayList<T> lista;
    lista = new ArrayList<>();
@@ -78,7 +79,7 @@ static int contadorIds;
     }
 
 @Override
-public void modificar(T nuevoValor){
+public T modificar(T nuevoValor){
 
     mapa.replace(nuevoValor.getId(), nuevoValor);
 
@@ -88,7 +89,7 @@ cli.setActivo(nuevoValor.isActivo());
 cli.setNombre(nuevoValor.getNombre());
 cli.setEmail(nuevoValor.getEmail());
 */
-
+return nuevoValor;
 }
 } 
 
