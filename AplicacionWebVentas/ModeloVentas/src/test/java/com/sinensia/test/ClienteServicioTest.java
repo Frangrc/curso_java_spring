@@ -22,6 +22,7 @@ import static org.junit.Assert.*;
 public class ClienteServicioTest {
     
     private static ServicioClientes servCli;
+    
     public ClienteServicioTest() {
     }
     
