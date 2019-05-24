@@ -8,6 +8,7 @@ package com.sinensia.modelo.logica;
 import com.sinensia.modelo.Cliente;
 //import com.sinensia.modelo.dao.ClienteDAO;
 import com.sinensia.modelo.dao.MySQLClienteDAO;
+import java.util.List;
 
 /**
  *
@@ -61,7 +62,7 @@ public class ServicioClientes {
     }
     
     public Cliente modificar(int id,String nombre, String email, String passwd, String edad, String activo)
-    throws Exception
+    //throws Exception
     {
     Cliente cli=null;
         if(validar(nombre, email,passwd,edad,activo)){
@@ -95,4 +96,8 @@ public class ServicioClientes {
         //TO DO: Faltan ciertas validaciones
         return true;
     }
+
+
+
+
 }

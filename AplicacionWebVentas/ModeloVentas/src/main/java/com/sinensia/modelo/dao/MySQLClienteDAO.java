@@ -79,31 +79,9 @@ public class MySQLClienteDAO implements InterfazDAO<Cliente> {
     }
 
     @Override
-    public Cliente obtenerUno(Integer id) {
-        
-    try (Connection conex = DriverManager.getConnection(Constantes.CONEXION, Constantes.USUARIO, Constantes.PASSWORD)) {
-            String sqlQuery = "SELECT id, nombre, edad, email, password, activo FROM cliente"
-                    + "FROM cliente WHERE id = ?";
-            PreparedStatement sentencia = conex.prepareStatement(sqlQuery);
-            //Cliente cliente = new Cliente();
-            ResultSet res = sentencia.executeQuery();
-            if (res.next()) {
-                //int id = res.getInt("id");
-                String nombre = res.getString("nombre");
-                String email=res.getString("email");
-                String password = res.getString("password");
-                short edad = res.getShort("edad");
-                short activo = res.getShort("activo");
-                Cliente cliente = new Cliente(id, nombre, email, edad, activo, password);
-            return cliente;
-            }
-            else {return null;}
-        } catch (SQLException ex) {
-            Logger.getLogger(MySQLClienteDAO.class.getName())
-                    .log(Level.SEVERE, "Error SQL", ex);
-            return null;
-        }    
-        
+    public Cliente obtenerUno(Integer id) {       
+     throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+           
     }
 
     public Cliente obtenerUno(String email) {

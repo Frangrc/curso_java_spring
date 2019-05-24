@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.sinensia.modelo.logica.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -39,7 +41,7 @@ public class ControladorClientes extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ControladorClientes</title>");            
+            out.println("<title>Servlet ControladorClientes</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet ControladorClientes at " + request.getContextPath() + "</h1>");
@@ -61,6 +63,24 @@ public class ControladorClientes extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+
+        String nombre = request.getParameter("nombre");
+        nombre=nombre!=null ? nombre : "";
+        ServicioClientes srvCli = new ServicioClientes();
+        List<Cliente> listado = srvCli.obtenerTodos();
+        List<Cliente> listaPorNombre = new ArrayList<>();
+        for (Cliente cliente : listado) {
+            if (cliente.getNombre().contains(nombre)) {
+                listaPorNombre.add(cliente);
+            }
+        }
+    //BEAN: objeto transmitible a traves de toda la aplicacion, en este caso, ambito
+    //de sesion
+    //Coger la listapornombre y adjuntarla a la peticion para que cuando redirijamos
+    //a la vista
+    request.getSession().setAttribute("listaPorNombre", listaPorNombre);
+    request.getRequestDispatcher("listado_jstl.jsp")
+            .forward(request, response);
     }
 
     /**
@@ -74,22 +94,23 @@ public class ControladorClientes extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-     
-     String nombre=request.getParameter("nombre");
-     String email=request.getParameter("email");
-     String password=request.getParameter("password");
-     String edad=request.getParameter("edad");
-     String activo=request.getParameter("activo");
-    
-     ServicioClientes servCli;
-     servCli= new ServicioClientes();
-     Cliente cli=servCli.insertar(nombre, email, password, edad, activo);
-     if(cli==null){
-     request.getRequestDispatcher("error_resgistro.jsp").forward(request, response);
-     }
-     else{
-     request.getRequestDispatcher("registro_ok.jsp").forward(request, response);     
-     }
+
+        String nombre = request.getParameter("nombre");
+        String email = request.getParameter("email");
+        String password = request.getParameter("password");
+        String edad = request.getParameter("edad");
+        String activo = request.getParameter("activo");
+
+        ServicioClientes servCli;
+        servCli = new ServicioClientes();
+        //Metemos los parámetros recogidos en un servicio
+        Cliente cli = servCli.insertar(nombre, email, password, edad, activo);
+        //Redireccionamos a la vista de error de registro o de registro ok
+        if (cli == null) {
+            request.getRequestDispatcher("error_resgistro.jsp").forward(request, response);
+        } else {
+            request.getRequestDispatcher("registro_ok.jsp").forward(request, response);
+        }
     }
 
     /**
