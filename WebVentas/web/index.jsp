@@ -13,5 +13,7 @@ and open the template in the editor.
     </head>
     <body>
         <%@include file="cabecera.jsp" %> 
+        
+        <a href="clientes.do">Ir al servlet</a>
     </body>
 </html>

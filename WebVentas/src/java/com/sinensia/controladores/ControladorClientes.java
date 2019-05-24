@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.sinensia.modelo.logica.*;
 import java.util.ArrayList;
 import java.util.List;
+import javax.servlet.http.Cookie;
 
 /**
  *
@@ -66,18 +67,26 @@ public class ControladorClientes extends HttpServlet {
 
         String nombre = request.getParameter("nombre");
         nombre=nombre!=null ? nombre : "";
+        
+        Cookie galleta=new Cookie("nombre_busqueda",nombre);
+        galleta.setMaxAge(10000);
+        response.addCookie(galleta);
+        
+        
+        
         ServicioClientes srvCli = new ServicioClientes();
         List<Cliente> listado = srvCli.obtenerTodos();
         List<Cliente> listaPorNombre = new ArrayList<>();
         for (Cliente cliente : listado) {
-            if (cliente.getNombre().contains(nombre)) {
+            if (cliente.getNombre().contains(nombre.toLowerCase())) {
                 listaPorNombre.add(cliente);
             }
+                       
         }
     //BEAN: objeto transmitible a traves de toda la aplicacion, en este caso, ambito
     //de sesion
     //Coger la listapornombre y adjuntarla a la peticion para que cuando redirijamos
-    //a la vista
+    //a la vista de listado_jstl
     request.getSession().setAttribute("listaPorNombre", listaPorNombre);
     request.getRequestDispatcher("listado_jstl.jsp")
             .forward(request, response);
