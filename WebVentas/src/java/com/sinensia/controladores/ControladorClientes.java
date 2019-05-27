@@ -34,22 +34,7 @@ public class ControladorClientes extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ControladorClientes</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ControladorClientes at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
-    }
+
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -63,20 +48,21 @@ public class ControladorClientes extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
 
         String nombre = request.getParameter("nombre");
-        nombre=nombre!=null ? nombre : "";
+        nombre=nombre!=null ? nombre : ""; //Validamos el nombre
         
-        Cookie galleta=new Cookie("nombre_busqueda",nombre);
+        Cookie galleta=new Cookie("nombre_busqueda",nombre); //Creamos la cookie
         galleta.setMaxAge(10000);
         response.addCookie(galleta);
-        
-        
+//        Cookie galleta2=new Cookie("otra_cookie",nombre);
+//        response.addCookie(galleta2);
+        galleta.setMaxAge(10000);
         
         ServicioClientes srvCli = new ServicioClientes();
         List<Cliente> listado = srvCli.obtenerTodos();
         List<Cliente> listaPorNombre = new ArrayList<>();
+        
         for (Cliente cliente : listado) {
             if (cliente.getNombre().contains(nombre.toLowerCase())) {
                 listaPorNombre.add(cliente);
@@ -86,7 +72,7 @@ public class ControladorClientes extends HttpServlet {
     //BEAN: objeto transmitible a traves de toda la aplicacion, en este caso, ambito
     //de sesion
     //Coger la listapornombre y adjuntarla a la peticion para que cuando redirijamos
-    //a la vista de listado_jstl
+    //a la vista de listado_jstl nos aparezca la lista con la busqueda por nombre
     request.getSession().setAttribute("listaPorNombre", listaPorNombre);
     request.getRequestDispatcher("listado_jstl.jsp")
             .forward(request, response);
@@ -106,7 +92,7 @@ public class ControladorClientes extends HttpServlet {
 
         String nombre = request.getParameter("nombre");
         String email = request.getParameter("email");
-        String password = request.getParameter("password");
+        String password = request.getParameter("password_encrip");
         String edad = request.getParameter("edad");
         String activo = request.getParameter("activo");
 

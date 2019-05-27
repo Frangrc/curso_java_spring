@@ -14,6 +14,7 @@
 <jsp:useBean id="listaPorNombre" type="java.util.ArrayList<Cliente>"
              scope="session">
     <jsp:getProperty property="*" name="listaPorNombre"/>
+</jsp:useBean>
 
 <!DOCTYPE html>
 <html>
