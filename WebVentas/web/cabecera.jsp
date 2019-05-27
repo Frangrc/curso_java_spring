@@ -12,11 +12,12 @@
             <a href="login.jsp">Login</a> 
             <a href="registro.jsp">Nuevo cliente</a> 
         </c:if>
-        
+         <a href="editar.jsp">Editar AJAX+BEANS</a>
         <c:if test="${login == 'ok'}">            
         <a href="listado.jsp">Listado clientes</a>
         <a href="listado_sql.jsp">Listado JSTL - SQL</a>
         <a href="clientes.do">Listado JSTL y Java Beans</a>
+        <a href="editar.jsp">Editar AJAX+BEANS</a>
               
         <form method="GET" action="clientes.do">
             <input type="text" id="nombre" name="nombre"/>
