@@ -19,20 +19,8 @@ import javax.servlet.http.HttpServletResponse;
  * @author Admin
  */
 public class ControladorLogin extends HttpServlet {
-
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
  
-
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
+     /**
      * Handles the HTTP <code>GET</code> method.
      *
      * @param request servlet request
@@ -40,11 +28,11 @@ public class ControladorLogin extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-//    @Override
-//    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-//            throws ServletException, IOException {
-//        processRequest(request, response);
-//    }
+    /*@Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }*/
 
     /**
      * Handles the HTTP <code>POST</code> method.
@@ -57,29 +45,22 @@ public class ControladorLogin extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       
-        String nombre = request.getParameter("nombre");
+        
         String email = request.getParameter("email");
-        String edad = request.getParameter("edad");
         String password = request.getParameter("password_encrip");
-        String activo = request.getParameter("activo");
         
+        ServicioClientes servCli = new ServicioClientes();
+        Cliente cli = servCli.obtenerUno(email);
         
-        ServicioClientes servCli=new ServicioClientes();
-        Cliente cli=servCli.obtenerUno(email);
-        
-        if(cli != null && cli.getPassword().equals(password)){
-        request.getSession().setAttribute("login", "ok"); 
-        request.getRequestDispatcher("listado.jsp")
-                .forward(request, response);
-        }
-        else{
+        if (cli != null && cli.getPassword().equals(password)) {
+            request.getSession().setAttribute("login", "ok");
+            request.getRequestDispatcher("listado.jsp")
+                    .forward(request, response);
+        } else {
             request.getSession().setAttribute("login", "ko");
             request.getRequestDispatcher("error_registro.jsp")
-               .forward(request, response); 
+                    .forward(request, response);
         }
-        
-    
     }
 
     /**

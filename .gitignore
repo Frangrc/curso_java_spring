@@ -34,3 +34,4 @@ hs_err_pid*
 /AplicacionWebVentas/ModeloVentas/target/
 /WebVentas/nbproject/private/
 /WebVentas/build/
+/WebVentas/dist/

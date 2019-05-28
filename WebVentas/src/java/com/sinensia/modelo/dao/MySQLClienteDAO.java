@@ -107,27 +107,26 @@ public class MySQLClienteDAO implements InterfazDAO<Cliente> {
     }
 
     public Cliente obtenerUno(String email) {
-
-        try (Connection conex = DriverManager.getConnection(Constantes.CONEXION, Constantes.USUARIO, Constantes.PASSWORD)) {
-            String sqlQuery = "SELECT id, nombre, edad, email, password, activo FROM cliente"
+   try (Connection conex = DriverManager.getConnection(
+                Constantes.CONEXION, Constantes.USUARIO, Constantes.PASSWORD)) {
+            String sqlQuery = "SELECT id, nombre, edad, password, activo "
                     + " FROM cliente WHERE email = ?";
             PreparedStatement stmt = conex.prepareStatement(sqlQuery);
-            stmt.setString(1,email);
+            stmt.setString(1, email); // Primer ? interrogante
             ResultSet res = stmt.executeQuery();
-            Cliente cli= null;
-            if(res.next()){
-                int id=res.getInt(1);
-                String nombre=res.getString(2);
-                short edad=res.getShort(3);
-                String password=res.getString(4);
-                short activo=res.getShort(5);   
-                cli=new Cliente(id, nombre, email, edad, activo, password);
+            Cliente cli = null;
+            if (res.next()) {
+                int id = res.getInt(1);
+                String nombre = res.getString(2);
+                short edad = res.getShort(3);
+                String password = res.getString(4);
+                short activo = res.getShort(5);
+                cli = new Cliente(id, nombre, email, edad, activo, password);                
             }
-        return cli;
-        
+            return cli;
         } catch (SQLException ex) {
             Logger.getLogger(MySQLClienteDAO.class.getName())
-            .log(Level.SEVERE, "Error SQL", ex);
+                    .log(Level.SEVERE, "Error SQL", ex);
             return null;
         }
 
@@ -188,13 +187,13 @@ public class MySQLClienteDAO implements InterfazDAO<Cliente> {
     public Cliente modificar(Cliente cliente) {
 
         try (Connection conex = DriverManager.getConnection(Constantes.CONEXION, Constantes.USUARIO, Constantes.PASSWORD)) {
-            String sqlQuery = "UPDATE cliente SET nombre=?, email=?, edad=?, activo=?, password=?";
+            String sqlQuery = "UPDATE cliente SET nombre=?, email=?, edad=?, activo=?, password=?  WHERE id=?";
             PreparedStatement sentencia = conex.prepareStatement(sqlQuery);
             sentencia.setString(1, cliente.getNombre());
             sentencia.setString(2, cliente.getEmail());
-            sentencia.setString(3, cliente.getPassword());
-            sentencia.setShort(4, cliente.getEdad());
-            sentencia.setShort(5, cliente.getActivo());
+            sentencia.setString(5, cliente.getPassword());
+            sentencia.setShort(3, cliente.getEdad());
+            sentencia.setShort(4, cliente.getActivo());
             sentencia.setInt(6, cliente.getId());
             sentencia.executeUpdate();
             return cliente;

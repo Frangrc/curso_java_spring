@@ -17,10 +17,9 @@
         <a href="listado.jsp">Listado clientes</a>
         <a href="listado_sql.jsp">Listado JSTL - SQL</a>
         <a href="clientes.do">Listado JSTL y Java Beans</a>
-        <a href="editar.jsp">Editar AJAX+BEANS</a>
-              
+                 
         <form method="GET" action="clientes.do">
-            <input type="text" id="nombre" name="nombre"/>
+            <input type="text" id="nombre_busq" name="nombre_busq"/>
             <input type="submit" value="BUSCAR"/>                     
         </form>
       </c:if>

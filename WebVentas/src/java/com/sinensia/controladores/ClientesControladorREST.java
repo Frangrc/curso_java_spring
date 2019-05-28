@@ -9,6 +9,8 @@ import com.sinensia.modelo.Cliente;
 import com.sinensia.modelo.logica.ServicioClientes;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -31,9 +33,10 @@ public class ClientesControladorREST extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         response.setContentType("application/json;charset=UTF-8");
-
-        try (PrintWriter salida = response.getWriter()) {
+        
+        try (PrintWriter salida = response.getWriter()) {  //Ponemos la respuesta como escritura de salida
             String nombre = request.getParameter("nombre");
             String email = request.getParameter("email");
             String password = request.getParameter("password_encrip");
@@ -43,22 +46,22 @@ public class ClientesControladorREST extends HttpServlet {
             ServicioClientes servCli;
             servCli = new ServicioClientes();
             
-            //Metemos los parámetros recogidos en un servicio
             Cliente cli = servCli.obtenerUno(email);
-            if(cli !=null){
-            cli=servCli.modificar(cli.getId(), nombre, email, password, edad, activo);
-                if (cli != null){
-                System.out.print("{");
-                System.out.print("      \"id\" : \"" + cli.getId() + "\"");
-                System.out.print("      \"nombre\" : \"" + cli.getNombre() + "\"");
-                System.out.print("{");
-                }
+            String jsonCli=" { ";
+            if (cli != null) {
+                cli = servCli.modificar(cli.getId(), nombre, email, password, edad, activo);
+                if (cli != null) {
+                    //Salida en estructura JSON
+                    jsonCli+= "   \"id\" : \"" + cli.getId() + "\"";
+                    jsonCli+= "   \"nombre\" : \"" + cli.getNombre() + "\""  ;
+                    jsonCli+= " ,  \"email\" : \"" + cli.getEmail() + "\""  ;
+                }           
             }
-
-            System.out.println(">>>>>" + nombre);
-
-            
-        }
+            jsonCli+= "}";
+            salida.print(jsonCli);
+            System.out.println(">>>>> " + jsonCli);
+           // salida.println("{'nombre' : '"  + nombre +  "'}");
+        }  
     }
 
     /**
@@ -69,11 +72,12 @@ public class ClientesControladorREST extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-//    @Override
-//    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-//            throws ServletException, IOException {
-//        processRequest(request, response);
-//    }
+    /*@Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }*/
+
     /**
      * Returns a short description of the servlet.
      *

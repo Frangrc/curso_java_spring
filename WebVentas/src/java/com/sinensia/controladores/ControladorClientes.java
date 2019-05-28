@@ -49,7 +49,7 @@ public class ControladorClientes extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String nombre = request.getParameter("nombre");
+        String nombre = request.getParameter("nombre_busq");
         nombre=nombre!=null ? nombre : ""; //Validamos el nombre
         
         Cookie galleta=new Cookie("nombre_busqueda",nombre); //Creamos la cookie
