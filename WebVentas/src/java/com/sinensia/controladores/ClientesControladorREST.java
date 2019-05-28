@@ -53,7 +53,7 @@ public class ClientesControladorREST extends HttpServlet {
                 if (cli != null) {
                     //Salida en estructura JSON
                     jsonCli+= "   \"id\" : \"" + cli.getId() + "\"";
-                    jsonCli+= "   \"nombre\" : \"" + cli.getNombre() + "\""  ;
+                    jsonCli+= " , \"nombre\" : \"" + cli.getNombre() + "\""  ;
                     jsonCli+= " ,  \"email\" : \"" + cli.getEmail() + "\""  ;
                 }           
             }
