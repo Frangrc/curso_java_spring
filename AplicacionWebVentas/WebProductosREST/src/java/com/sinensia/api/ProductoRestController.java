@@ -5,6 +5,7 @@
  */
 package com.sinensia.api;
 
+import com.google.gson.Gson;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -35,8 +36,17 @@ public class ProductoRestController extends HttpServlet {
         textoJson.append(lineaJson);
         }
         bufRead.close();
-        escritorRespuesta.println(textoJson.toString().toUpperCase());
+        //escritorRespuesta.println(textoJson.toString().toUpperCase());
         System.out.println(">>>>" + textoJson.toString().toUpperCase());
+        
+        Gson gson=new Gson();
+        Producto producto=gson.fromJson(textoJson.toString(), Producto.class);
+        System.out.println(">>>>" + producto.getNombre());
+        producto.setNombre(producto.getNombre().toUpperCase());
+        producto.setPrecio("5000 bolivares");
+        
+        String jsonRespuesta=gson.toJson(producto);
+        escritorRespuesta.println(jsonRespuesta);
     }
 
 }
