@@ -29,18 +29,18 @@ var alPulsarModificar = function () {
         alert(" ¿Email recibido? " + objResp["email"] + " Y el nombre es "
                 + objResp.nombre);
         console.log("JSON: >> " + jsonResp);
-        var divInfo=document.getElementById("div_info");
-        divInfo.style="display: block";
-        
-        var spanEdad=document.getElementById("span_edad");
-        var spanId=document.getElementById("span_id");
-        var spanActivo=document.getElementById("span_activo");      
-        document.getElementById("span_nombre").innerHTML=objResp.nombre;
-        document.getElementById("span_email").innerHTML=objResp.email;
-        document.getElementById("span_password").innerHTML=objResp.password;      
-        spanId.innerHTML = objResp.id;
-        spanEdad.innerHTML = objResp.edad;
-        spanActivo.innerHTML = objResp.activo;
+//        var divInfo=document.getElementById("div_info");
+//        divInfo.style="display: block";
+//        
+//        var spanEdad=document.getElementById("span_edad");
+//        var spanId=document.getElementById("span_id");
+//        var spanActivo=document.getElementById("span_activo");      
+//        document.getElementById("span_nombre").innerHTML=objResp.nombre;
+//        document.getElementById("span_email").innerHTML=objResp.email;
+//        document.getElementById("span_password").innerHTML=objResp.password;      
+//        spanId.innerHTML = objResp.id;
+//        spanEdad.innerHTML = objResp.edad;
+//        spanActivo.innerHTML = objResp.activo;
                 
         
         } /*else {

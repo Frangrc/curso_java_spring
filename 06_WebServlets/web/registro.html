@@ -6,33 +6,41 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <title>Fornlario registro Cliente</title>
+        <title>Formulario registro Cliente</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
         <h1>Formulario registro Cliente</h1>
-        <form name="form1" method="get" action="registro">
+        <form name="form1" method="post" action="registro">
             <table>
                 <tr><td>Nombre:</td><td>
                         <input type="text" name="nombre" size="30" id="nombre"
-                               value="Fulanito"/>
+                               />
                         </td></tr>
                 <tr><td>Edad:</td><td>
                         <input type="number" name="edad" size="4" id="edad"
-                               value="30"/>
+                               />
                         </td></tr>
                 <tr><td>Email:</td><td>
                         <input type="email" name="email" size="30" id="email"
-                              value="fulanito@email.com" />
+                               />
                         </td></tr>
                 <tr><td>Activo:</td><td>
                         <input type="checkbox" name="activo" size="30" id="activo"
                                checked="checked"/> Activo
-                        </td></tr>                    
+                        </td></tr>
+                <tr><td>Password:</td><td>
+                        <input type="checkbox" name="password" size="30" id="password"
+                               /> 
+                        </td></tr>  
                         
             </table>
             <input type="submit" value="Registrarse"/>
+            <input type="button" value="Registrarse por AJAX"
+                   id="btn_registro_ajax"/>
         </form>
+            
+        <script src="js/registro_ajax.js"></script>
     </body>
 </html>
